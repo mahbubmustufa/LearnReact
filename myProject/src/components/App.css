@@ -9,3 +9,9 @@
 		animation: logo-spin infinite 20s linear;
 	}
 }
+.mt-3 {
+	margin-top: 3em;
+}
+.upper {
+	text-transform: uppercase;
+}
