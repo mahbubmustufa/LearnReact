@@ -1,13 +1,16 @@
 import React from "react";
 
 const DisplayContact = (props) => {
-	console.log(props.contactForDispaly);
-
+	const { id, name, email } = props.contact;
 	return (
-		<div className="mt-3">
-			<h2>{props.contactForDispaly.toString}</h2>
+		<div className="item">
+			<div className="content">
+				<dvi className="header upper red">{name}</dvi>
+				<div>{email}</div>
+			</div>
+			<i className="trash alternate icon red"></i>
+			<hr />
 		</div>
 	);
 };
-
 export default DisplayContact;

@@ -1,36 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import Header from "./Header";
-import DisplayContact from "./displayContact";
-
-const demoContact = [
-	{
-		name: "mahbub",
-		email: "email",
-		id: 1,
-	},
-	{
-		name: "mustufa",
-		email: "email",
-		id: 2,
-	},
-	{
-		name: "nusrat",
-		email: "email",
-		id: 3,
-	},
-];
-
-const contactForDispaly = () => {
-	console.log(contact);
-};
-
+import AddContact from "./AddContactOne";
+import ContactListOne from "./ContactListOne";
 function App() {
+	const LOCAL_STORAGE_KYE = "contact";
+	const [demoContact, setContact] = useState([]);
+	const addContactHandler = (contact) => {
+		console.log(contact);
+		setContact([...demoContact, contact]);
+	};
+
+	useEffect(() => {
+		const retrifi = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KYE));
+		if (retrifi) setContact(retrifi);
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem(LOCAL_STORAGE_KYE, JSON.stringify(demoContact));
+	}, [demoContact]);
 	return (
 		<div className="ui container">
 			<Header />
-			<DisplayContact contactForDispaly={demoContact} />
+			<AddContact addContactHandler={addContactHandler} />
+			<ContactListOne passToContactListObj={demoContact} />
 		</div>
 	);
 }
